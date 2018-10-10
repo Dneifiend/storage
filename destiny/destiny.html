@@ -35,7 +35,7 @@ var dow = ["일","월","화","수","목","금","토"];
 // 강력장비 종류
 function dn (tt, num, num2, colorkey) {
     switch (tt) {
-        case "일영" :
+        case "일일영웅" :
         var tm = (d%4) -2 + 2 + num;
         break;
         
@@ -43,7 +43,7 @@ function dn (tt, num, num2, colorkey) {
         var tm = (d%4) -2 + 3 + num;
         break;
         
-        case "시련" :
+        case "시련의장" :
         var tm = (d%4) -2 + 2 + num;
         break;
         
@@ -51,7 +51,7 @@ function dn (tt, num, num2, colorkey) {
         var tm =  (d%4) -2 + 0 + num;
         break;
         
-        case "주간" :
+        case "주간리셋" :
         var tm =  (d%7) -2 + 3 + num;
         break;
     }
@@ -62,7 +62,7 @@ function dn (tt, num, num2, colorkey) {
     
     if (tm == 0) {
         document.write('<div class="normaltable start ' + colorkey  + '">');
-        document.write(tt + " 시작");
+        document.write(tt + "");
         document.write('</div>');
     }
     else if (num2 == tm+1) {
@@ -92,9 +92,9 @@ for (i=0; i < 7 ; i++) {
     }
     document.write('</div>');
     
-    dn("주간",i,7, "bgblue");
-    dn("시련", i, 4, "bgred");
-    dn("일영", i, 4, "bgdarkblue");
+    dn("주간리셋",i,7, "bgblue");
+    dn("시련의장", i, 4, "bgred");
+    dn("일일영웅", i, 4, "bgdarkblue");
     dn("공격대", i, 4, "bgorange");
     dn("겜빗", i, 4, "bggreen");
     document.write('</div>');
