@@ -1,4 +1,4 @@
-[
+var data = [
 	{
 		"id" : 1000,		"en_name" : "Ancient Tower",
 		"ko_name" : "고대 포탑",
