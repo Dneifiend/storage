@@ -2,15 +2,19 @@
     <script>
         var yourUrl = 'https://api.warframestat.us/pc/cetusCycle'
         function Get(yourUrl) {
-            var Httpreq = new XMLHttpRequest(); // a new request
+            var Httpreq = new XMLHttpRequest();
             Httpreq.open("GET", yourUrl, false);
             Httpreq.send(null);
             return Httpreq.responseText;
         }
         var dnTime = JSON.parse(Get(yourUrl));
-        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)));
+        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length))-(60*1000)*0);
         var date = new Date();
         var nexttime = new Date(dd - date);
+
+        var expire = date.getTime() > dd.getTime() ? true : false
+
+
         function d(num) {
             if (num == 0) {
                 return ''
@@ -21,20 +25,23 @@
         var t_id = dnTime.isDay ? "낮" : "밤";
         var temp_time = "";
         setInterval(function () {
+            expire = date.getTime() > dd.getTime() ? true : false
             date = new Date()
             var nexttime = new Date(dd - date)
-            var expire = date.getTime() > dd.getTime() ? true : false
+            
             if (expire && t_id == "낮") {
+                expire = false
                 t_id = "밤"
                 dd = new Date(dd.getTime() + (1000 * 60) * 50)
             }
             if (expire && t_id == "밤") {
+                expire = false
                 t_id = "낮"
                 dd = new Date(dd.getTime() + (1000 * 60) * 100)
             }
             var temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + 'h '
             var temp_sec = nexttime.getSeconds()
-            var temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 9 ? '0'+nexttime.getMinutes() : nexttime.getMinutes();
+            var temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 10 ? '0'+nexttime.getMinutes() : nexttime.getMinutes();
             temp_sec = nexttime.getSeconds() < 10 ? "0" + nexttime.getSeconds() : nexttime.getSeconds()
             temp_time = temp_h + temp_min + d(nexttime.getMinutes()) + temp_sec;
             document.getElementsByTagName("title")[0].innerText = t_id + ' ' + temp_time
