@@ -1,19 +1,16 @@
 <head>
     <script>
         var yourUrl = 'https://api.warframestat.us/pc/cetusCycle'
-
         function Get(yourUrl) {
             var Httpreq = new XMLHttpRequest(); // a new request
             Httpreq.open("GET", yourUrl, false);
             Httpreq.send(null);
             return Httpreq.responseText;
         }
-
         var dnTime = JSON.parse(Get(yourUrl));
-        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)));
+        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length))+(60*1000)*23);
         var date = new Date();
         var nexttime = new Date(dd - date);
-
         function d(num) {
             if (num == 0) {
                 return ''
@@ -21,18 +18,12 @@
                 return ':'
             }
         }
-
-
         var t_id = dnTime.isDay ? "낮" : "밤";
         var temp_time = "";
-
-
         setInterval(function () {
             date = new Date()
             var nexttime = new Date(dd - date)
-
             var expire = date.getTime() > dd.getTime() ? true : false
-
             if (expire && t_id == "낮") {
                 t_id = "밤"
                 dd = new Date(dd.getTime() + (1000 * 60) * 50)
@@ -41,37 +32,26 @@
                 t_id = "낮"
                 dd = new Date(dd.getTime() + (1000 * 60) * 100)
             }
-
-            var temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + ':'
+            var temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + 'h '
             var temp_sec = nexttime.getSeconds()
-            var temp_min = nexttime.getMinutes() == 0 ? '' : nexttime.getMinutes()
+            var temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 9 ? '0'+nexttime.getMinutes() : nexttime.getMinutes();
             temp_sec = nexttime.getSeconds() < 10 ? "0" + nexttime.getSeconds() : nexttime.getSeconds()
             temp_time = temp_h + temp_min + d(nexttime.getMinutes()) + temp_sec;
-
             document.getElementsByTagName("title")[0].innerText = t_id + ' ' + temp_time
             document.getElementsByTagName("span")[0].innerText = temp_time
-
-
             var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-
-
             link.type = 'image/x-icon';
             link.rel = 'shortcut icon';
             if (t_id == "낮") {
                 link.href = 'https://i.imgur.com/8mUebCk.png'
                 document.getElementById('cetusico').setAttribute("src", 'https://i.imgur.com/8mUebCk.png')
-
             }
             if (t_id == "밤") {
                 link.href = 'https://i.imgur.com/qikHrAq.png'
                 document.getElementById('cetusico').setAttribute("src", 'https://i.imgur.com/qikHrAq.png')
             }
             document.getElementsByTagName('head')[0].appendChild(link);
-
-
         }, 1000)
-
-
         document.write(
             `
             <head>
