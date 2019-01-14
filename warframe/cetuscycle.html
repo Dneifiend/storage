@@ -9,7 +9,7 @@
             return Httpreq.responseText;
         }
         var dnTime = JSON.parse(Get(yourUrl));
-        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 96);
+        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 0);
         var date = new Date();
         var nexttime = new Date(dd - date);
 
