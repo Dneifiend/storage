@@ -1,6 +1,7 @@
 <head>
     <script>
         var yourUrl = 'https://api.warframestat.us/pc/cetusCycle'
+
         function Get(yourUrl) {
             var Httpreq = new XMLHttpRequest();
             Httpreq.open("GET", yourUrl, false);
@@ -8,7 +9,7 @@
             return Httpreq.responseText;
         }
         var dnTime = JSON.parse(Get(yourUrl));
-        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length))-(60*1000)*0);
+        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 0);
         var date = new Date();
         var nexttime = new Date(dd - date);
 
@@ -28,7 +29,7 @@
             expire = date.getTime() > dd.getTime() ? true : false
             date = new Date()
             var nexttime = new Date(dd - date)
-            
+
             if (expire && t_id == "낮") {
                 expire = false
                 t_id = "밤"
@@ -41,7 +42,8 @@
             }
             var temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + 'h '
             var temp_sec = nexttime.getSeconds()
-            var temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 10 ? '0'+nexttime.getMinutes() : nexttime.getMinutes();
+            var temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 10 ? '0' + nexttime.getMinutes() :
+                nexttime.getMinutes();
             temp_sec = nexttime.getSeconds() < 10 ? "0" + nexttime.getSeconds() : nexttime.getSeconds()
             temp_time = temp_h + temp_min + d(nexttime.getMinutes()) + temp_sec;
             document.getElementsByTagName("title")[0].innerText = t_id + ' ' + temp_time
@@ -70,7 +72,9 @@
                 </style>
                 </head>
                 <body style="background-color: rgba(0,0,0,0)">
-                  <img src="" id="cetusico" width=50 style="vertical-align: middle; margin-right: 8px"> <span id="cetus" style="font-size: 50px; vertical-align: middle;font-family: 'Russo One', sans-serif; font-weight: bold; color: white"></span>
+                <div>
+                <img src="" id="cetusico" width=50 style="vertical-align: middle; margin-right: 8px"> <span id="cetus" style="font-size: 50px; vertical-align: middle;font-family: 'Russo One', sans-serif; font-weight: bold; color: white"></span>
+                </div>
                 </body>
                 `
         )
