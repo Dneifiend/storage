@@ -9,7 +9,7 @@
             return Httpreq.responseText;
         }
         var dnTime = JSON.parse(Get(yourUrl));
-        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 0);
+        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 78);
         var date = new Date();
         var nexttime = new Date(dd - date);
 
@@ -67,9 +67,13 @@
 
         }, 1000)
 
-        setInterval(() => {
+        var bang = setInterval(() => {
             var waring = true
-            if (Number(temp_min) < 2) {
+            if(Number(temp_min) < 5 && Number(temp_min) > 0){
+                document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
+                waring = true
+            }
+            if (Number(temp_min) < 1) {
                 if (waring) {
                     document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                     waring = false
@@ -81,6 +85,12 @@
                 }, 1000);
             }
         }, 2000);
+
+        var bangoff = setInterval(()=>{
+            if(Number(temp_min) > 5) {
+                clearInterval(bang)
+            }
+        },1000)
 
         document.write(
             `
