@@ -25,6 +25,7 @@
         }
 
         var temp_min = "";
+        var temp_h = "";
         var t_id = dnTime.isDay ? "낮" : "밤";
         var temp_time = "";
         setInterval(function () {
@@ -42,7 +43,7 @@
                 t_id = "낮"
                 dd = new Date(dd.getTime() + (1000 * 60) * 100)
             }
-            var temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + 'h '
+            temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + 'h '
             var temp_sec = nexttime.getSeconds()
             temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 10 ? '0' + nexttime.getMinutes() :
                 nexttime.getMinutes();
@@ -69,11 +70,11 @@
 
         var bang = setInterval(() => {
             var waring = true
-            if(Number(temp_min) < 5 && Number(temp_min) > 0){
+            if(Number(temp_min) < 5 && Number(temp_min) > 0 && Number(temp_h) !== 1) {
                 document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                 waring = true
             }
-            if (Number(temp_min) < 1) {
+            if (Number(temp_min) < 1  && Number(temp_h) !== 1) {
                 if (waring) {
                     document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                     waring = false
