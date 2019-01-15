@@ -9,7 +9,7 @@
             return Httpreq.responseText;
         }
         var dnTime = JSON.parse(Get(yourUrl));
-        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 0);
+        var dd = new Date(Number(dnTime.id.substr(10, dnTime.id.length)) - (60 * 1000) * 117);
         var date = new Date();
         var nexttime = new Date(dd - date);
 
@@ -28,6 +28,7 @@
         var temp_h = "";
         var t_id = dnTime.isDay ? "낮" : "밤";
         var temp_time = "";
+        var temp_sec = "";
         setInterval(function () {
             expire = date.getTime() > dd.getTime() ? true : false
             date = new Date()
@@ -44,7 +45,7 @@
                 dd = new Date(dd.getTime() + (1000 * 60) * 100)
             }
             temp_h = nexttime.getHours() - 9 == 0 ? '' : nexttime.getHours() - 9 + 'h '
-            var temp_sec = nexttime.getSeconds()
+            temp_sec = nexttime.getSeconds()
             temp_min = nexttime.getMinutes() == 0 ? '' : (nexttime.getMinutes()) < 10 ? '0' + nexttime.getMinutes() :
                 nexttime.getMinutes();
             temp_sec = nexttime.getSeconds() < 10 ? "0" + nexttime.getSeconds() : nexttime.getSeconds()
@@ -70,11 +71,11 @@
 
         var bang = setInterval(() => {
             var waring = true
-            if (Number(temp_min) < 5 && Number(temp_min) > 0 && temp_h !== '1h ') {
+            if (t_id == "낮" && Number(temp_min) < 5 && Number(temp_min) > 0 && temp_h !== '1h ') {
                 document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                 waring = true
             }
-            if (Number(temp_min) < 1 && temp_h !== '1h ') {
+            if (t_id == "낮" && Number(temp_min) < 1 && temp_h !== '1h ') {
                 if (waring) {
                     document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                     waring = false
@@ -84,6 +85,13 @@
                         document.getElementById("bgdiv").style.backgroundColor = ''
                     }
                 }, 1000);
+            }
+
+
+            if (t_id == "낮" && Number(temp_min) == 5 && Number(temp_sec) == 0) {
+                var TeralystSound = new Audio(
+                    'https://dneifiend.github.io/storage/warframe/sound/warframe_Teralyst_sound.mp3');
+                TeralystSound.play();
             }
         }, 2000);
 
