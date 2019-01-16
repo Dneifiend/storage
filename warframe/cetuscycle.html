@@ -77,18 +77,20 @@
                 document.body.style.display = "none"
                 waring = true
             }
+
             if (t_id == "낮" && Number(temp_min) > 4 && Number(temp_min) < 10 && temp_h !== '1h ' && dpcheck ==
                 true) {
                 document.body.style.display = ""
                 waring = true
             }
 
-            if (t_id == "낮" && Number(temp_min) < 5 && Number(temp_min) > 0 && temp_h !== '1h ') {
+            if (Number(temp_min) < 5 && Number(temp_min) > 0 && temp_h !== '1h ') {
                 document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                 document.body.style.display = ""
                 waring = true
             }
-            if (t_id == "낮" && Number(temp_min) < 1 && temp_h !== '1h ') {
+
+            if (Number(temp_min) < 1 && temp_h !== '1h ') {
                 if (waring) {
                     document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
                     waring = false
