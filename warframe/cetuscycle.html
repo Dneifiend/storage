@@ -69,10 +69,23 @@
 
         }, 1000)
 
+        var dpcheck = true
         var bang = setInterval(() => {
             var waring = true
+
+            if (t_id == "낮" && Number(temp_min) > 9 && temp_h !== '1h ' && dpcheck == true) {
+                document.body.style.display = "none"
+                waring = true
+            }
+            if (t_id == "낮" && Number(temp_min) > 4 && Number(temp_min) < 10 && temp_h !== '1h ' && dpcheck ==
+                true) {
+                document.body.style.display = ""
+                waring = true
+            }
+
             if (t_id == "낮" && Number(temp_min) < 5 && Number(temp_min) > 0 && temp_h !== '1h ') {
                 document.getElementById("bgdiv").style.backgroundColor = 'rgb(244, 67, 54)'
+                document.body.style.display = ""
                 waring = true
             }
             if (t_id == "낮" && Number(temp_min) < 1 && temp_h !== '1h ') {
@@ -117,7 +130,8 @@
 
         function f() {
             document.body.requestFullscreen().then(() => {
-
+                document.body.style.display = ""
+                dpcheck = false
                 var bodystyle = document.body.style
                 bodystyle.backgroundColor = "rgba(0,0,0,1)";
                 document.getElementsByTagName('span')[0].style.fontSize = '17rem'
