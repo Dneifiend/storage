@@ -103,7 +103,7 @@
             }
 
 
-            if (t_id == "낮" && Number(temp_min) == 5 && Number(temp_sec) == 0) {
+            if (t_id == "낮" && Number(temp_min) == 5 && Number(temp_sec) == 0 && temp_h !== '1h ') {
                 var TeralystSound = new Audio(
                     'https://dneifiend.github.io/storage/warframe/sound/warframe_Teralyst_sound.mp3');
                 TeralystSound.play();
