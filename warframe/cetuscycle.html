@@ -73,36 +73,34 @@
                 // 	link.href = 'https://dneifiend.github.io/storage/warframe/img/night.png'
                 // }
 
-
-                var defaultIco = document.querySelector('head > link[rel="icon"]');
-                if (defaultIco) {
-                    defaultIco.remove()
-                }
-
                 var linkChecker = document.querySelector('head > link[rel="shortcut icon"]');
                 if (!linkChecker) {
                     //없으면 낮밤 새로
                     if (t_id == "낮") {
                         link.href = 'https://dneifiend.github.io/storage/warframe/img/day.png'
                         document.getElementsByTagName('head')[0].appendChild(link);
-                        document.getElementById('cetusico').setAttribute("src", 'https://dneifiend.github.io/storage/warframe/img/day.png');
+                        document.getElementById('cetusico').setAttribute("src",
+                            'https://dneifiend.github.io/storage/warframe/img/day.png');
                     }
                     if (t_id == "밤") {
                         link.href = 'https://dneifiend.github.io/storage/warframe/img/night.png'
                         document.getElementsByTagName('head')[0].appendChild(link);
-                        document.getElementById('cetusico').setAttribute("src", 'https://dneifiend.github.io/storage/warframe/img/night.png')
+                        document.getElementById('cetusico').setAttribute("src",
+                            'https://dneifiend.github.io/storage/warframe/img/night.png')
                     }
                     return false
                 } else if (linkChecker.href !==
                     "https://dneifiend.github.io/storage/warframe/img/day.png" && t_id == "낮") {
                     //있지만 밤인데 낮아이콘이면
                     linkChecker.href = 'https://dneifiend.github.io/storage/warframe/img/day.png';
-                    document.getElementById('cetusico').setAttribute("src", 'https://dneifiend.github.io/storage/warframe/img/day.png');
+                    document.getElementById('cetusico').setAttribute("src",
+                        'https://dneifiend.github.io/storage/warframe/img/day.png');
                 } else if (linkChecker.href !==
                     "https://dneifiend.github.io/storage/warframe/img/night.png" && t_id == "밤") {
                     //있지만 밤인데 낮아이콘이면
                     linkChecker.href = 'https://dneifiend.github.io/storage/warframe/img/night.png'
-                    document.getElementById('cetusico').setAttribute("src", 'https://dneifiend.github.io/storage/warframe/img/night.png')
+                    document.getElementById('cetusico').setAttribute("src",
+                        'https://dneifiend.github.io/storage/warframe/img/night.png')
                 }
 
                 // document.getElementsByTagName('head')[0].appendChild(link);
@@ -163,9 +161,6 @@
             bodystyle.textAlign = 'center'
             document.querySelector('button').remove()
         }
-
-
-
     </script>
     <title></title>
     <link href="https://fonts.googleapis.com/css?family=Muli:900" rel="stylesheet">
@@ -212,7 +207,9 @@
         </div>
     </div>
     <button onclick="full()" style="float: bottom" class="fullbtn">전체화면</button>
-    <script>full()</script>
+    <script>
+        full()
+    </script>
 
 
 </body>
