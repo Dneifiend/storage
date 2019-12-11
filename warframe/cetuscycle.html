@@ -61,6 +61,10 @@
                 document.getElementsByTagName("title")[0].innerText = t_id + ' ' + temp_time
                 document.getElementsByTagName("span")[0].innerText = temp_time
 
+                container.style.left = (document.body.clientWidth - container.clientWidth) / 2;
+                container.style.top = (document.body.clientHeight - container.clientHeight) / 2
+
+
                 var link = document.querySelector("link[rel*='icon']") || document.createElement(
                     'link');
                 link.type = 'image/x-icon';
@@ -147,27 +151,29 @@
                     );
                     TeralystSound.play();
                 }
-            }, 2000);
 
+            }, 2000);
 
         })
 
-        function full() {
-            document.body.style.display = ""
-            dpcheck = false
-            var bodystyle = document.body.style
-            document.getElementsByTagName('span')[0].style.fontSize = '17rem'
-            document.getElementById("cetusico").style.width = "228px";
-            bodystyle.textAlign = 'center'
-            document.querySelector('button').remove()
+        window.onload = () => {
+            container.style.left = (document.body.clientWidth - container.clientWidth) / 2;
+            container.style.top = (document.body.clientHeight - container.clientHeight) / 2
         }
+        window.addEventListener('resize', () => {
+            container.style.left = (document.body.clientWidth - container.clientWidth) / 2
+            container.style.top = (document.body.clientHeight - container.clientHeight) / 2
+        })
     </script>
     <title></title>
     <link href="https://fonts.googleapis.com/css?family=Muli:900" rel="stylesheet">
     <meta http-equiv="Expires" content="${dnTime.expiry}">
     <style>
         span {
-            font-family: 'Russo One', sans-serif
+            font-family: "Muli", sans-serif;
+            font-size: 15vw;
+            vertical-align: middle;
+            color: white
         }
 
         body {
@@ -176,11 +182,16 @@
             display: table;
             margin: 0;
             background-color: black;
+            text-align: cetner;
+            ;
         }
 
         #container {
-            display: table-cell;
+            display: inherit;
             vertical-align: middle;
+            /* left: 50vw; */
+            /* right: 50vw; */
+            position: absolute;
         }
 
         .fullbtn {
@@ -193,23 +204,19 @@
             font-size: 1.2vh;
             cursor: pointer;
         }
+
+        img {
+            margin-right: 4px;
+            width: 14vw;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
 
 <body>
     <div id="container">
-        <img src="./img/daynight.png" id="cetusico" width=50 style="vertical-align: middle; margin-right: 4px">
-        <div id="bgdiv"
-            style="background-color: rgba(255,0,0,0); border-radius: 10px; padding: 0 12px; display: inline-block"><span
-                id="cetus"
-                style="font-size: 50px; vertical-align: middle;font-family: 'Muli', sans-serif; color: white"></span>
-        </div>
+        <img src="./img/daynight.png" id="cetusico">
+        <span id="cetus"></span>
     </div>
-    <button onclick="full()" style="float: bottom" class="fullbtn">전체화면</button>
-    <script>
-        full()
-    </script>
-
-
 </body>
